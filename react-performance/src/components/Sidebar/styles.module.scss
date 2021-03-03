@@ -1,0 +1,31 @@
+.section {
+  height: 100%;
+  background-color: #eee;
+  padding: 32px 0;
+
+  .groupTitle {
+    color: #333;
+    font-weight: 500;
+    padding: 0 16px;
+  }
+
+  > a {
+    font-size: 14px;
+    padding: 8px 32px;
+    text-decoration: none;
+    color: #666;
+    width: 100%;
+    display: block;
+
+    &:hover {
+      color: rgb(74, 74, 155);
+    }
+
+    &.active {
+      color: rgb(74, 74, 155);
+    }
+  }
+
+  .divider {
+  }
+}

@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  height: 100%;
+
+  .sidebar {
+    max-width: 350px;
+    flex: 1;
+  }
+
+  .content {
+    flex: 1;
+    padding: 32px;
+    overflow: auto;
+  }
+}
