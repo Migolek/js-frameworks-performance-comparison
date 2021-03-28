@@ -3,15 +3,16 @@ import StartTestBtn from "../../../components/StartTestBtn";
 
 export default function CreatingRows() {
   const [renderRows, setRenderRows] = useState(false);
+  const tableRows = Array.from(Array(1000).keys());
 
   const startTest = () => {
     setRenderRows(!renderRows);
   };
 
   const renderTable = () => {
-    const timeStart = performance.now();
+    const startTime = performance.now();
 
-    const table = Array.from(Array(1000).keys()).map((ele, idx) => {
+    const table = tableRows.map((ele, idx) => {
       return (
         <tr key={idx}>
           <td>{idx}</td>
@@ -19,9 +20,10 @@ export default function CreatingRows() {
       );
     });
 
-    const timeEnd = performance.now();
+    const endTime = performance.now();
 
-    console.log("Creating rows - 1000 => ", timeEnd - timeStart, "ms");
+    // console.log("Creating rows - 1000 => ", endTime - startTime, "ms");
+    console.log(endTime - startTime);
 
     return (
       <table>
@@ -37,7 +39,9 @@ export default function CreatingRows() {
 
   return (
     <section>
-      <StartTestBtn rendered={renderRows} onClick={startTest} />
+      <div className="d-flex">
+        <StartTestBtn rendered={renderRows} onClick={startTest} />
+      </div>
       {renderRows && renderTable()}
     </section>
   );

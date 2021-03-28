@@ -1,5 +1,7 @@
-import { Switch, Route, Link, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import CreatingRows from "./DOM/CreatingRows";
+import UpdatingRows from "./DOM/UpdatingRows";
+import UpdatingNthRows from "./DOM/UpdatingNthRows";
 import Sidebar from "../components/Sidebar";
 
 import * as styles from "./styles.module.scss";
@@ -17,6 +19,12 @@ function App() {
           </Route>
           <Route path="/dom/creating-rows">
             <CreatingRows />
+          </Route>
+          <Route path="/dom/updating-rows">
+            <UpdatingRows />
+          </Route>
+          <Route path="/dom/updating-nth-rows">
+            <UpdatingNthRows />
           </Route>
         </Switch>
       </div>
