@@ -15,6 +15,9 @@ export default function Sidebar() {
       <NavLink to="/dom/updating-nth-rows" activeClassName={styles.active}>
         Updating every 10 row
       </NavLink>
+      <NavLink to="/dom/selecting-row" activeClassName={styles.active}>
+        Selecting any row
+      </NavLink>
       <hr className={styles.divider} />
       <p className={styles.groupTitle}>Startup tests</p>
       <hr className={styles.divider} />

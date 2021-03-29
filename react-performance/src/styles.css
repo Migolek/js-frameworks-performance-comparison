@@ -56,7 +56,10 @@ table>tbody>tr>td {
   border: 1px solid #ddd;
 }
 
-
 table>tbody>tr:nth-child(odd)>td {
   background-color: #fff;
+}
+
+table>tbody>tr.active>td {
+  background-color: green;
 }
