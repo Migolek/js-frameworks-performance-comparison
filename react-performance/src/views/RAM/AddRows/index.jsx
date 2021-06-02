@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import StartTestBtn from "../../../components/StartTestBtn";
+import { generateRandomNumberInRange } from "../../../utils/random";
 
-export default function SelectingRow() {
+export default function AddRows() {
   const [startTest, setStartTest] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
-  const [selectedRow, setSelectedRow] = useState('');
   const [rows, setRows] = useState([]);
 
   const handleStart = () => {
@@ -13,7 +13,7 @@ export default function SelectingRow() {
   };
 
   const createRows = () => {
-    const createdRows = Array.from(Array(1000).keys()).map((ele, idx) => {
+    const createdRows = Array.from(Array(10000).keys()).map((ele, idx) => {
       return (
         <tr key={idx}>
           <td>{Math.random().toFixed(2)}</td>
@@ -24,43 +24,36 @@ export default function SelectingRow() {
     setRows(createdRows);
   };
 
-  const updateRows = () => {
-    setStartTime(performance.now());
-
-    const updatedRows = rows.map((ele, idx) => {
-      if (idx === selectedRow) {
-        return (
-          <tr key={idx} className="active">
-            <td>{ele.props.children.props.children}</td>
-          </tr>
-        );
-      } else return ele;
+  const addNewRows = () => {
+    const newRows = Array.from(Array(1000).keys()).map((e, idx) => {
+      return (
+        <tr key={idx + rows.length}>
+          <td>{Math.random().toFixed(2)}</td>
+        </tr>
+      );
     });
-    setEndTime(performance.now());
+    const mergedRows = [...rows, ...newRows];
 
-    // console.log("Creating rows - 1000 => ", endTime - startTime, "ms");
-    console.log(endTime - startTime);
-
-    setRows(updatedRows);
+    setRows(mergedRows);
   };
 
   useEffect(() => {
+    console.log('memory: ', performance.memory, 'rows: ',rows.length);
+  }, [rows]);
+
+  useEffect(() => {
+    console.log('Initial memory: ', performance.memory, 'rows: ',rows.length);
     createRows();
   }, []);
 
   useLayoutEffect(() => {
-    updateRows();
+    addNewRows();
   }, [startTest]);
 
   return (
     <section>
       <div className="d-flex">
         <StartTestBtn rendered={startTest} onClick={handleStart} />
-        <input
-          type="number"
-          value={selectedRow}
-          onChange={({ target }) => setSelectedRow(Number(target.value))}
-        />
       </div>
       <table>
         <thead>
